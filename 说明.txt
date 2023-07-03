@@ -1,0 +1,28 @@
+- 第一步：未来预期
+开头部分修改参数
+inflation = 0.025 # 通胀
+riskless_rate = 0.03 # 无风险收益率
+early_by = 0 # 提前退休年份
+
+stock_ann_return = 0.1 # 股票年化收益
+bond_ann_return = 0.035 # 债券年化收益
+stock_ann_vol = 0.20 # 股票年化波动
+bond_ann_vol = 0.03 # 债券年化收益
+correl = -0.095 # 股债相关性
+
+
+- 第二步：定义客户
+main部分修改employee(当前工资,当前年龄，性别，风险偏好，tgt_replacement=0.5,wage_increase_rate=0.035）
+推荐参数：
+当前工资=1
+当前年龄=65-(目标年份-当前年份)
+性别="m"
+风险偏好=5.85
+tgt_replacement # 目标替代率，无实际作用
+wage_increase_rate # 工资增长率
+
+- 第三步：优化输出
+main部分
+tom = employee(1,35,'m',5.85)
+(tom.optimize()).to_excel(str(tom.age_now)+"_"+tom.gender+"_"+str(tom.theta)+".xlsx")
+
